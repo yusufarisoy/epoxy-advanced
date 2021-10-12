@@ -9,6 +9,7 @@ import java.lang.reflect.Method
 import java.lang.reflect.ParameterizedType
 import java.util.concurrent.ConcurrentHashMap
 
+// Taken from: https://github.com/airbnb/epoxy/blob/master/kotlinsample/src/main/java/com/airbnb/epoxy/kotlinsample/helpers/ViewBindingEpoxyModelWithHolder.kt
 @Suppress("UNCHECKED_CAST")
 abstract class ViewBindingEpoxyModel<T : ViewBinding> : EpoxyModelWithHolder<ViewBindingEpoxyHolder>() {
 

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.yusufarisoy.core.utils.SimplifiedTextWatcher
+import com.yusufarisoy.core.utils.SimpleTextWatcher
 import com.yusufarisoy.core.views.base.BaseFragment
 import com.yusufarisoy.rickandmorty.databinding.FragmentLoginBinding
 import com.yusufarisoy.rickandmorty.ui.login.epoxy.LoginEpoxyController
@@ -53,7 +53,7 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun loginTextWatchers() = object : LoginTextWatchers {
-        override val emailTextWatcher = object : SimplifiedTextWatcher {
+        override val emailTextWatcher = object : SimpleTextWatcher {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 viewModel.setEmailText(p0.toString())
             }

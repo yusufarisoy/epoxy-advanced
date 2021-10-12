@@ -3,7 +3,7 @@ package com.yusufarisoy.rickandmorty.ui.home.epoxy
 import com.airbnb.epoxy.TypedEpoxyController
 import com.yusufarisoy.core.data.entity.character.Character
 import com.yusufarisoy.core.data.entity.location.Location
-import com.yusufarisoy.core.utils.SimplifiedTextWatcher
+import com.yusufarisoy.core.utils.SimpleTextWatcher
 import com.yusufarisoy.core.views.epoxy.*
 import com.yusufarisoy.rickandmorty.R
 import com.yusufarisoy.rickandmorty.ui.home.CharacterOnClick
@@ -11,7 +11,7 @@ import com.yusufarisoy.rickandmorty.ui.home.HomeViewModel.HomeState
 import com.yusufarisoy.rickandmorty.util.getStatusResourceId
 
 class HomeEpoxyController(
-    private val _textWatcher: SimplifiedTextWatcher,
+    private val _textWatcher: SimpleTextWatcher,
     private val _characterOnClick: CharacterOnClick
 ) : TypedEpoxyController<HomeState>() {
 

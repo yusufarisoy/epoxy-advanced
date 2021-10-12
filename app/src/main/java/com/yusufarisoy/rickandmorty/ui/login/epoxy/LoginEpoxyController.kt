@@ -1,7 +1,7 @@
 package com.yusufarisoy.rickandmorty.ui.login.epoxy
 
 import com.airbnb.epoxy.TypedEpoxyController
-import com.yusufarisoy.core.utils.SimplifiedTextWatcher
+import com.yusufarisoy.core.utils.SimpleTextWatcher
 import com.yusufarisoy.core.views.epoxy.textInput
 import com.yusufarisoy.core.views.epoxy.textInputPassword
 import com.yusufarisoy.core.views.epoxy.title
@@ -14,7 +14,7 @@ class LoginEpoxyController(
 ) : TypedEpoxyController<LoginState>() {
 
     interface LoginTextWatchers {
-        val emailTextWatcher: SimplifiedTextWatcher
+        val emailTextWatcher: SimpleTextWatcher
         fun onPasswordChanged(password: String)
     }
 

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.yusufarisoy.core.utils.SimplifiedTextWatcher
+import com.yusufarisoy.core.utils.SimpleTextWatcher
 import com.yusufarisoy.core.views.base.BaseFragment
 import com.yusufarisoy.rickandmorty.databinding.FragmentRegisterBinding
 import com.yusufarisoy.rickandmorty.ui.register.epoxy.RegisterEpoxyController
@@ -64,17 +64,17 @@ class RegisterFragment : BaseFragment() {
     }
 
     private fun registerTextWatchers() = object : RegisterTextWatchers {
-        override val emailTextWatcher = object : SimplifiedTextWatcher {
+        override val emailTextWatcher = object : SimpleTextWatcher {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 viewModel.setEmailText(p0.toString())
             }
         }
-        override val nameTextWatcher = object : SimplifiedTextWatcher {
+        override val nameTextWatcher = object : SimpleTextWatcher {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 viewModel.setNameText(p0.toString())
             }
         }
-        override val surnameTextWatcher = object : SimplifiedTextWatcher {
+        override val surnameTextWatcher = object : SimpleTextWatcher {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 viewModel.setSurnameText(p0.toString())
             }

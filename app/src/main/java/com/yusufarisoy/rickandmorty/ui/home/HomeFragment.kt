@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.yusufarisoy.core.utils.SimplifiedTextWatcher
+import com.yusufarisoy.core.utils.SimpleTextWatcher
 import com.yusufarisoy.core.views.base.BaseFragment
 import com.yusufarisoy.rickandmorty.databinding.FragmentHomeBinding
 import com.yusufarisoy.rickandmorty.ui.characterdetail.CharacterDetailFragment
@@ -62,7 +62,7 @@ class HomeFragment : BaseFragment() {
         binding.epoxyRecyclerView.addOnScrollListener(scrollListener)
     }
 
-    private fun searchTextWatcher() = object : SimplifiedTextWatcher {
+    private fun searchTextWatcher() = object : SimpleTextWatcher {
         override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             viewModel.setSearchText(p0.toString())
         }

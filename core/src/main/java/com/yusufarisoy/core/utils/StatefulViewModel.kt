@@ -5,6 +5,7 @@ import com.yusufarisoy.common.StateError
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
+//Taken from: https://github.com/mehmeettkaya/RelaxingTime/blob/master/core/src/main/java/com/mehmetkaya/core/StatefulViewModel.kt
 abstract class StatefulViewModel<S : UiState>(initialState: S) : ViewModel() {
 
     private val _stateFlow = MutableStateFlow(State(initialState))

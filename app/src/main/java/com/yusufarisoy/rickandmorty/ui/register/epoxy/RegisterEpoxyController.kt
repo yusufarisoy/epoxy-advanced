@@ -1,7 +1,7 @@
 package com.yusufarisoy.rickandmorty.ui.register.epoxy
 
 import com.airbnb.epoxy.TypedEpoxyController
-import com.yusufarisoy.core.utils.SimplifiedTextWatcher
+import com.yusufarisoy.core.utils.SimpleTextWatcher
 import com.yusufarisoy.core.views.epoxy.textInput
 import com.yusufarisoy.core.views.epoxy.textInputPassword
 import com.yusufarisoy.core.views.epoxy.title
@@ -14,9 +14,9 @@ class RegisterEpoxyController(
 ) : TypedEpoxyController<RegisterState>() {
 
     interface RegisterTextWatchers {
-        val emailTextWatcher: SimplifiedTextWatcher
-        val nameTextWatcher: SimplifiedTextWatcher
-        val surnameTextWatcher: SimplifiedTextWatcher
+        val emailTextWatcher: SimpleTextWatcher
+        val nameTextWatcher: SimpleTextWatcher
+        val surnameTextWatcher: SimpleTextWatcher
         fun onPasswordChanged(password: String)
         fun onPasswordRepeatChanged(passwordRepeat: String)
     }
