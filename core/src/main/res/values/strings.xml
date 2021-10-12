@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search">Search...</string>
+    <string name="content_description">content description</string>
+    <string name="password">Password</string>
+    <string name="password_repeat">Password Repeat</string>
+</resources>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="@dimen/space_16"
+    android:layout_marginTop="@dimen/space_16"
+    android:paddingHorizontal="@dimen/space_16"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <TextView
+        android:id="@+id/labelStatus"
+        android:text="@string/status"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <View
+        android:id="@+id/viewStatus"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/labelStatus"
+        app:layout_constraintEnd_toStartOf="@id/textViewStatus"
+        app:layout_constraintTop_toTopOf="@id/textViewStatus"
+        app:layout_constraintBottom_toBottomOf="@id/textViewStatus"
+        />
+
+    <TextView
+        android:id="@+id/textViewStatus"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/gray_700"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_4"
+        android:layout_marginStart="@dimen/space_4"
+        app:layout_constraintStart_toEndOf="@id/viewStatus"
+        app:layout_constraintEnd_toEndOf="@id/labelStatus"
+        app:layout_constraintTop_toBottomOf="@id/labelStatus"
+        />
+
+    <TextView
+        android:id="@+id/labelSpecies"
+        android:text="@string/species"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/labelStatus"
+        app:layout_constraintEnd_toStartOf="@id/labelGender"
+        />
+
+    <TextView
+        android:id="@+id/textViewSpecies"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/gray_700"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_4"
+        app:layout_constraintStart_toStartOf="@id/labelSpecies"
+        app:layout_constraintEnd_toEndOf="@id/labelSpecies"
+        app:layout_constraintTop_toBottomOf="@id/labelSpecies"
+        />
+
+    <TextView
+        android:id="@+id/labelGender"
+        android:text="@string/gender"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/textViewGender"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/gray_700"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_4"
+        app:layout_constraintStart_toStartOf="@id/labelGender"
+        app:layout_constraintEnd_toEndOf="@id/labelGender"
+        app:layout_constraintTop_toBottomOf="@id/labelGender"
+        />
+
+    <TextView
+        android:id="@+id/labelLastKnownLocation"
+        android:text="@string/last_known_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_32"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/textViewLocation"
+        app:layout_constraintTop_toBottomOf="@id/textViewStatus"
+        />
+
+    <TextView
+        android:id="@+id/textViewLocation"
+        android:textColor="@color/gray_700"
+        android:textStyle="italic|bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_8"
+        app:layout_constraintStart_toEndOf="@id/labelLastKnownLocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/labelLastKnownLocation"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

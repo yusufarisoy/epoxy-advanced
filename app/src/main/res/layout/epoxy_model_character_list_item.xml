@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:background="@drawable/rectangle_border_0_radius"
+    android:id="@+id/itemLayout"
+    >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:scaleType="fitXY"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:padding="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/character_image_content_description"
+        />
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/gray_700"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_8"
+        android:layout_marginEnd="@dimen/space_8"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        app:layout_constraintBottom_toTopOf="@id/textViewStatusAndSpecies"
+        />
+
+    <View
+        android:id="@+id/viewStatus"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        app:layout_constraintStart_toStartOf="@id/textViewName"
+        app:layout_constraintTop_toTopOf="@id/textViewStatusAndSpecies"
+        app:layout_constraintBottom_toBottomOf="@id/textViewStatusAndSpecies"
+        />
+
+    <TextView
+        android:id="@+id/textViewStatusAndSpecies"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_4"
+        android:layout_marginStart="@dimen/space_4"
+        app:layout_constraintTop_toBottomOf="@id/textViewName"
+        app:layout_constraintStart_toEndOf="@id/viewStatus"
+        app:layout_constraintEnd_toEndOf="@id/textViewName"
+        app:layout_constraintBottom_toTopOf="@id/textViewLastKnownLocation"
+        />
+
+    <TextView
+        android:id="@+id/textViewLastKnownLocation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_4"
+        app:layout_constraintStart_toStartOf="@id/textViewName"
+        app:layout_constraintTop_toBottomOf="@id/textViewStatusAndSpecies"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/textViewName"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

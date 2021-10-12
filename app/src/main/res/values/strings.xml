@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">RickAndMorty</string>
+    <string name="character_image_content_description">Character Image</string>
+    <string name="status">Status</string>
+    <string name="species">Species</string>
+    <string name="gender">Gender</string>
+    <string name="last_known_location">Last known location:</string>
+    <string name="register">Register</string>
+    <string name="register_hint">Don\'t have an account?</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+</resources>
