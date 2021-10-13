@@ -8,6 +8,7 @@ import com.yusufarisoy.core.data.entity.location.Location
 import com.yusufarisoy.core.data.remote.NetworkResponse
 import com.yusufarisoy.core.data.repository.CharacterRepository
 import com.yusufarisoy.core.data.repository.LocationRepository
+import com.yusufarisoy.core.extensions.addElements
 import com.yusufarisoy.core.utils.StatefulViewModel
 import com.yusufarisoy.core.utils.UiState
 import com.yusufarisoy.rickandmorty.ui.home.HomeViewModel.HomeState
@@ -61,8 +62,7 @@ class HomeViewModel @Inject constructor(
         fetchCharacters(fetchType = FetchType.INIT)
     }
 
-    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    suspend fun fetchHomeState(
+    private suspend fun fetchHomeState(
     ): HomeState = HomeState(
         locations = locationsChannel.receive(),
         characters = charactersChannel.receive()
@@ -97,20 +97,14 @@ class HomeViewModel @Inject constructor(
     private suspend fun handleCharactersResponse(fetchType: FetchType, characters: List<Character>?) {
         when (fetchType) {
             FetchType.INIT -> charactersChannel.send(characters)
-            FetchType.LOAD_MORE -> addCharacters(characters)
+            FetchType.LOAD_MORE -> {
+                val characterList = currentUiState.characters?.addElements(characters)
+                setState {
+                    copy(characters = characterList)
+                }
+            }
             FetchType.SEARCH -> setState {
                 copy(characters = characters)
-            }
-        }
-    }
-
-    private fun addCharacters(characters: List<Character>?) {
-        characters?.let {
-            val list = currentUiState.characters?.toMutableList()?.apply {
-                addAll(it)
-            }
-            setState {
-                copy(characters = list)
             }
         }
     }

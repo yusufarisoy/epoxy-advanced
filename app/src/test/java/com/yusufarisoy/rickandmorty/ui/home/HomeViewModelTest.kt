@@ -9,6 +9,7 @@ import com.yusufarisoy.core.data.entity.location.LocationListResponse
 import com.yusufarisoy.core.data.remote.NetworkResponse
 import com.yusufarisoy.core.data.repository.CharacterRepository
 import com.yusufarisoy.core.data.repository.LocationRepository
+import com.yusufarisoy.core.extensions.addElements
 import com.yusufarisoy.rickandmorty.utils.CoroutineTestRule
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -46,7 +47,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `Locations fetching`() = coroutineTestRule.runBlockingTest {
+    fun `When locations fetched state is getting set correctly`() = coroutineTestRule.runBlockingTest {
 
         val location = com.yusufarisoy.core.data.entity.location.Location(
             id = 0,
@@ -60,38 +61,33 @@ class HomeViewModelTest {
 
         coEvery {
             characterRepository.getCharacters(any(), any(), any(), any())
-        } returns flow {
-            emit(NetworkResponse(
-                NetworkResponse.Status.SUCCESS,
-                CharacterListResponse(
-                    info = Info(count = 0, pages = 0, next = "", prev = ""),
-                    characters = listOf()
-                ),
-                null))
-        }
+        } returns flow { emit(NetworkResponse(
+            status = NetworkResponse.Status.SUCCESS,
+            data = CharacterListResponse(
+                info = Info(count = 0, pages = 0, next = "", prev = ""),
+                characters = listOf()
+            ), error = null
+        ))}
 
         coEvery {
             locationRepository.getLocations(any(), any(), any(), any())
-        } returns flow {
-            emit(NetworkResponse(
-                NetworkResponse.Status.SUCCESS,
-                LocationListResponse(
-                    info = Info(count = 0, pages = 0, next = "", prev = ""),
-                    locations = listOf(location)
-                ),
-                null
-            ))
-        }
+        } returns flow { emit(NetworkResponse(
+            status = NetworkResponse.Status.SUCCESS,
+            data = LocationListResponse(
+                info = Info(count = 0, pages = 0, next = "", prev = ""),
+                locations = listOf(location)
+            ), error = null
+        ))}
 
         homeViewModel.fetchState()
 
         assertThat(
-            homeViewModel.currentUiState.locations?.get(0)
-        ).isEqualTo(location)
+            homeViewModel.currentUiState.locations
+        ).isEqualTo(listOf(location))
     }
 
     @Test
-    fun `Characters fetching`() = coroutineTestRule.runBlockingTest {
+    fun `When characters fetched state is getting set correctly`() = coroutineTestRule.runBlockingTest {
 
         val character = Character(
             id = 0,
@@ -110,33 +106,101 @@ class HomeViewModelTest {
 
         coEvery {
             characterRepository.getCharacters(any(), any(), any(), any())
-        } returns flow {
-            emit(NetworkResponse(
-                NetworkResponse.Status.SUCCESS,
-                CharacterListResponse(
-                    info = Info(count = 0, pages = 0, next = "", prev = ""),
-                    characters = listOf(character)
-                ),
-                null))
-        }
+        } returns flow { emit(NetworkResponse(
+            status = NetworkResponse.Status.SUCCESS,
+            data = CharacterListResponse(
+                info = Info(count = 0, pages = 0, next = "", prev = ""),
+                characters = listOf(character)
+            ), error = null
+        ))}
 
         coEvery {
             locationRepository.getLocations(any(), any(), any(), any())
-        } returns flow {
-            emit(NetworkResponse(
-                NetworkResponse.Status.SUCCESS,
-                LocationListResponse(
-                    info = Info(count = 0, pages = 0, next = "", prev = ""),
-                    locations = listOf()
-                ),
-                null
-            ))
-        }
+        } returns flow { emit(NetworkResponse(
+            status = NetworkResponse.Status.SUCCESS,
+            data = LocationListResponse(
+                info = Info(count = 0, pages = 0, next = "", prev = ""),
+                locations = listOf()
+            ), error = null
+        ))}
 
         homeViewModel.fetchState()
 
         assertThat(
-            homeViewModel.currentUiState.characters?.get(0)
-        ).isEqualTo(character)
+            homeViewModel.currentUiState.characters
+        ).isEqualTo(listOf(character))
+    }
+
+    @Test
+    fun `When search text is set state is getting set correctly`() = coroutineTestRule.runBlockingTest {
+
+        val searchText = "Rick Sanchez"
+        homeViewModel.setSearchText(searchText)
+
+        assertThat(
+            homeViewModel.currentUiState.searchText
+        ).isEqualTo(searchText)
+    }
+
+    @Test
+    fun `When search text is set characters in state is getting fetched correctly`() = coroutineTestRule.runBlockingTest {
+
+        val character = Character(
+            id = 1,
+            name = "Rick Sanchez",
+            status = "",
+            species = "",
+            type = "",
+            gender = "",
+            origin = Origin(name = "", url = ""),
+            location = Location(name = "", url = ""),
+            image = "",
+            episode = listOf(),
+            url = "",
+            created = ""
+        )
+
+        coEvery {
+            characterRepository.getCharacters(any(), any(), any(), any())
+        } returns flow { emit(NetworkResponse(
+            status = NetworkResponse.Status.SUCCESS,
+            data = CharacterListResponse(
+                info = Info(count = 0, pages = 0, next = "", prev = ""),
+                characters = listOf(character)
+            ), error = null
+        ))}
+
+        val searchText = "Rick Sanchez"
+        homeViewModel.setSearchText(searchText)
+
+        assertThat(
+            homeViewModel.currentUiState.characters
+        ).isEqualTo(listOf(character))
+    }
+
+    @Test
+    fun `List extension add elements is working correctly`() = coroutineTestRule.runBlockingTest {
+
+        val character = Character(
+            id = 0,
+            name = "",
+            status = "",
+            species = "",
+            type = "",
+            gender = "",
+            origin = Origin(name = "", url = ""),
+            location = Location(name = "", url = ""),
+            image = "",
+            episode = listOf(),
+            url = "",
+            created = ""
+        )
+
+        val characterList: List<Character> = listOf(character, character)
+        val updatedList = characterList.addElements(listOf(character, character))
+
+        assertThat(
+            updatedList
+        ).isEqualTo(listOf(character, character, character, character))
     }
 }
