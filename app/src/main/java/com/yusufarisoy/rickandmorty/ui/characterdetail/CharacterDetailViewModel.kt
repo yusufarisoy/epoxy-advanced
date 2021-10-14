@@ -1,6 +1,5 @@
 package com.yusufarisoy.rickandmorty.ui.characterdetail
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.yusufarisoy.core.data.entity.character.Character
 import com.yusufarisoy.core.data.remote.NetworkResponse
@@ -9,50 +8,42 @@ import com.yusufarisoy.core.utils.StatefulViewModel
 import com.yusufarisoy.core.utils.UiState
 import com.yusufarisoy.rickandmorty.ui.characterdetail.CharacterDetailViewModel.CharacterDetailState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.supervisorScope
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class CharacterDetailViewModel @Inject constructor(
-    args: SavedStateHandle,
     private val characterRepository: CharacterRepository
 ) : StatefulViewModel<CharacterDetailState>(CharacterDetailState()) {
 
-    private val id: Int = args.get("id")!!
+    private var _id: Int? = null
 
-    init {
-        fetchState()
+    fun init(id: Int) {
+        if (_id == null) {
+            _id = id
+            fetchState(id)
+        }
     }
 
-    private fun fetchState() {
+    private fun fetchState(id: Int) {
         viewModelScope.launch {
             setProgress(progress = true)
-            val state = fetchCharacterDetailState(id)
-            setState {
-                state
+            fetchCharacterDetailState(id)
+        }
+    }
+
+    private suspend fun fetchCharacterDetailState(id: Int) = viewModelScope.launch {
+        characterRepository.getCharacterById(id).collect {
+            if (it.status == NetworkResponse.Status.SUCCESS) {
+                setState {
+                    copy(character = it.data)
+                }
+            } else {
+                setError(it.error)
             }
             setProgress(progress = false)
         }
-    }
-
-    private suspend fun fetchCharacterDetailState(id: Int): CharacterDetailState = supervisorScope {
-        var character: Character? = null
-        withContext(Dispatchers.IO) {
-            characterRepository.getCharacterById(id).collect {
-                if (it.status == NetworkResponse.Status.SUCCESS) {
-                    character = it.data
-                } else {
-                    setError(it.error)
-                }
-            }
-        }
-        CharacterDetailState(
-            character = character
-        )
     }
 
     fun addCharacterToFavorites() {

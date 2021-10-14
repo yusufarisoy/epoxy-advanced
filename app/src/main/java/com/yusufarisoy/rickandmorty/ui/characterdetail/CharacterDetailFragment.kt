@@ -39,6 +39,8 @@ class CharacterDetailFragment : BaseFragment() {
     }
 
     private fun initViews() {
+        val id = requireArguments().getInt("id")
+        viewModel.init(id)
         observeState()
         initEpoxyController()
         withProgress(viewModel, ::onProgress)
