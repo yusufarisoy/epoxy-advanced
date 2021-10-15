@@ -1,13 +1,12 @@
 package com.yusufarisoy.core.views.epoxy
 
-import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
-import androidx.core.widget.addTextChangedListener
 import androidx.annotation.StringRes
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.yusufarisoy.core.R
 import com.yusufarisoy.core.databinding.EpoxyModelTextInputPasswordBinding
+import com.yusufarisoy.core.utils.SimpleTextWatcher
 import com.yusufarisoy.core.utils.ViewBindingEpoxyModel
 import com.yusufarisoy.core.utils.setInputText
 
@@ -20,25 +19,28 @@ abstract class TextInputPasswordEpoxyModel : ViewBindingEpoxyModel<EpoxyModelTex
 
     @EpoxyAttribute var text: String? = null
 
-    @EpoxyAttribute
-    lateinit var onTextChanged: (text: String) -> Unit
+    @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
+    lateinit var onTextChanged: (text: String?) -> Unit
 
     //Variables
     private var isPasswordVisible = false
 
-    private lateinit var textWatcher: TextWatcher
+    private val textWatcher = object : SimpleTextWatcher {
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            this@TextInputPasswordEpoxyModel.onTextChanged(p0.toString())
+        }
+    }
 
     override fun EpoxyModelTextInputPasswordBinding.bind() {
         editTextInput.setHint(hint)
         setInputText(editTextInput, text)
-        textWatcher = editTextInput.addTextChangedListener {
-            onTextChanged(it.toString())
-        }
-
+        editTextInput.addTextChangedListener(textWatcher)
         buttonChangeInputType.setOnClickListener {
-            editTextInput.transformationMethod = if (isPasswordVisible) null
-            else
+            editTextInput.transformationMethod = if (isPasswordVisible)
+                null
+            else {
                 PasswordTransformationMethod.getInstance()
+            }
             editTextInput.setSelection(editTextInput.length())
             isPasswordVisible = !isPasswordVisible
         }

@@ -58,7 +58,7 @@ class LoginFragment : BaseFragment() {
                 viewModel.setEmailText(p0.toString())
             }
         }
-        override fun onPasswordChanged(password: String) {
+        override fun onPasswordChanged(password: String?) {
             viewModel.setPasswordText(password)
         }
     }

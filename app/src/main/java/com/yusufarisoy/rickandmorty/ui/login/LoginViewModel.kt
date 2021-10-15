@@ -15,7 +15,7 @@ class LoginViewModel @Inject constructor() : StatefulViewModel<LoginState>(Login
         copy(emailText = emailText)
     }
 
-    fun setPasswordText(password: String) = setState {
+    fun setPasswordText(password: String?) = setState {
         copy(passwordText = password)
     }
 

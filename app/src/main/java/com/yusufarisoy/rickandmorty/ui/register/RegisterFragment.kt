@@ -79,11 +79,11 @@ class RegisterFragment : BaseFragment() {
                 viewModel.setSurnameText(p0.toString())
             }
         }
-        override fun onPasswordChanged(password: String) {
+        override fun onPasswordChanged(password: String?) {
             viewModel.setPasswordText(password)
         }
 
-        override fun onPasswordRepeatChanged(passwordRepeat: String) {
+        override fun onPasswordRepeatChanged(passwordRepeat: String?) {
             viewModel.setPasswordRepeatText(passwordRepeat)
         }
     }
