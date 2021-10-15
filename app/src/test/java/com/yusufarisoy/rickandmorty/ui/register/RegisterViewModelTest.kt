@@ -26,7 +26,7 @@ class RegisterViewModelTest {
     @Test
     fun `When setEmailText() called state's getting set correctly`() = coroutineTestRule.runBlockingTest {
 
-        val email = "yusuf@gmail.com"
+        val email = "yusuf.arisoy@gmail.com"
         registerViewModel.setEmailText(email)
 
         Assertions.assertThat(
