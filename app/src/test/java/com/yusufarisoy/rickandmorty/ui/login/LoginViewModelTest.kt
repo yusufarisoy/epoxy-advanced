@@ -28,7 +28,7 @@ class LoginViewModelTest {
     @Test
     fun `When setEmailText() called state's getting set correctly`() = coroutineTestRule.runBlockingTest {
 
-        val email = "yusuf@gmail.com"
+        val email = "yusuf.arisoy@gmail.com"
         loginViewModel.setEmailText(email)
 
         assertThat(
