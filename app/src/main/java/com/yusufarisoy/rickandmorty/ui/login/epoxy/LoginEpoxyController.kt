@@ -15,7 +15,7 @@ class LoginEpoxyController(
 
     interface LoginTextWatchers {
         val emailTextWatcher: SimpleTextWatcher
-        fun onPasswordChanged(password: String?)
+        val passwordTextWatcher: SimpleTextWatcher
     }
 
     interface LoginCallbacks {
@@ -50,7 +50,7 @@ class LoginEpoxyController(
         textInputPassword {
             id("id_text_input_password")
             text(password)
-            onTextChanged(this@LoginEpoxyController._loginTextWatchers::onPasswordChanged)
+            textWatcher(this@LoginEpoxyController._loginTextWatchers.passwordTextWatcher)
         }
     }
 

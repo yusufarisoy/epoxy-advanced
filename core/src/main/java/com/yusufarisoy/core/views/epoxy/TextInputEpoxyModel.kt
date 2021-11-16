@@ -3,6 +3,7 @@ package com.yusufarisoy.core.views.epoxy
 import android.text.TextWatcher
 import androidx.annotation.StringRes
 import com.airbnb.epoxy.*
+import com.airbnb.epoxy.EpoxyAttribute.Option.DoNotHash
 import com.yusufarisoy.core.R
 import com.yusufarisoy.core.databinding.EpoxyModelTextInputBinding
 import com.yusufarisoy.core.utils.*
@@ -14,16 +15,15 @@ abstract class TextInputEpoxyModel : ViewBindingEpoxyModel<EpoxyModelTextInputBi
     @EpoxyAttribute
     var hint: Int? = null
 
-    @EpoxyAttribute var text: String? = null
+    @EpoxyAttribute
+    var text: String? = null
 
-    @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
+    @EpoxyAttribute(DoNotHash)
     lateinit var textWatcher: TextWatcher
 
     override fun EpoxyModelTextInputBinding.bind() {
-        hint?.let {
-            editTextInput.setHint(it)
-        }
-        setInputText(editTextInput, text)
+        editTextInput.setNullableHint(hint)
+        editTextInput.setInputText(text)
         editTextInput.addTextChangedListener(textWatcher)
     }
 
