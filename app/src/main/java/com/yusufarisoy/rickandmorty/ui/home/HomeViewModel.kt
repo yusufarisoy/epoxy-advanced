@@ -79,7 +79,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun fetchCharacters(
-        fetchType: FetchType = FetchType.LOAD_MORE,//TODO: ask / fetch type or 3 different methods
+        fetchType: FetchType = FetchType.LOAD_MORE,
         characterStatus: String? = null,
         characterGender: String? = null
     ) = viewModelScope.launch { characterRepository

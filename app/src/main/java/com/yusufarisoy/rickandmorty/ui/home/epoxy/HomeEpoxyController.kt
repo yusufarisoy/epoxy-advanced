@@ -17,9 +17,7 @@ class HomeEpoxyController(
 
     override fun buildModels(data: HomeState) {
         data.locations?.let {
-            buildSearchView(data.searchText)// What's the best way?
-            //buildTitle("", "")
-            //buildLocations(it)
+            buildSearchView(data.searchText)
         }
         data.locations?.let(::buildLocations)
         data.characters?.let(::buildCharacters)
@@ -33,12 +31,11 @@ class HomeEpoxyController(
     }
 
     private fun buildSearchView(searchText: String?) {
-        val textWatcher = _textWatcher
         textInput {
             id("Search View")
             hint(R.string.search)
             text(searchText)
-            textWatcher(textWatcher)
+            textWatcher(this@HomeEpoxyController._textWatcher)
         }
     }
 

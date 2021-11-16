@@ -17,8 +17,8 @@ class RegisterEpoxyController(
         val emailTextWatcher: SimpleTextWatcher
         val nameTextWatcher: SimpleTextWatcher
         val surnameTextWatcher: SimpleTextWatcher
-        fun onPasswordChanged(password: String?)
-        fun onPasswordRepeatChanged(passwordRepeat: String?)
+        val passwordTextWatcher: SimpleTextWatcher
+        val passwordRepeatTextWatcher: SimpleTextWatcher
     }
 
     override fun buildModels(data: RegisterState) {
@@ -69,7 +69,7 @@ class RegisterEpoxyController(
         textInputPassword {
             id("id_text_input_password")
             text(passwordText)
-            onTextChanged(this@RegisterEpoxyController._registerTextWatchers::onPasswordChanged)
+            textWatcher(this@RegisterEpoxyController._registerTextWatchers.passwordTextWatcher)
         }
     }
 
@@ -78,7 +78,7 @@ class RegisterEpoxyController(
             id("id_text_input_password_repeat")
             hint(R.string.password_repeat)
             text(passwordRepeatText)
-            onTextChanged(this@RegisterEpoxyController._registerTextWatchers::onPasswordRepeatChanged)
+            textWatcher(this@RegisterEpoxyController._registerTextWatchers.passwordRepeatTextWatcher)
         }
     }
 

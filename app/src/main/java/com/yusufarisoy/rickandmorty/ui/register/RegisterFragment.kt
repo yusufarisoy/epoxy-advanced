@@ -65,26 +65,33 @@ class RegisterFragment : BaseFragment() {
 
     private fun registerTextWatchers() = object : RegisterTextWatchers {
         override val emailTextWatcher = object : SimpleTextWatcher {
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                viewModel.setEmailText(p0.toString())
+            override fun onTextChanged(text: String?) {
+                viewModel.setEmailText(text)
             }
-        }
-        override val nameTextWatcher = object : SimpleTextWatcher {
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                viewModel.setNameText(p0.toString())
-            }
-        }
-        override val surnameTextWatcher = object : SimpleTextWatcher {
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                viewModel.setSurnameText(p0.toString())
-            }
-        }
-        override fun onPasswordChanged(password: String?) {
-            viewModel.setPasswordText(password)
         }
 
-        override fun onPasswordRepeatChanged(passwordRepeat: String?) {
-            viewModel.setPasswordRepeatText(passwordRepeat)
+        override val nameTextWatcher = object : SimpleTextWatcher {
+            override fun onTextChanged(text: String?) {
+                viewModel.setNameText(text)
+            }
+        }
+
+        override val surnameTextWatcher = object : SimpleTextWatcher {
+            override fun onTextChanged(text: String?) {
+                viewModel.setSurnameText(text)
+            }
+        }
+
+        override val passwordTextWatcher = object : SimpleTextWatcher {
+            override fun onTextChanged(text: String?) {
+                viewModel.setPasswordText(text)
+            }
+        }
+
+        override val passwordRepeatTextWatcher = object : SimpleTextWatcher {
+            override fun onTextChanged(text: String?) {
+                viewModel.setPasswordRepeatText(text)
+            }
         }
     }
 

@@ -54,12 +54,15 @@ class LoginFragment : BaseFragment() {
 
     private fun loginTextWatchers() = object : LoginTextWatchers {
         override val emailTextWatcher = object : SimpleTextWatcher {
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                viewModel.setEmailText(p0.toString())
+            override fun onTextChanged(text: String?) {
+                viewModel.setEmailText(text)
             }
         }
-        override fun onPasswordChanged(password: String?) {
-            viewModel.setPasswordText(password)
+
+        override val passwordTextWatcher = object : SimpleTextWatcher {
+            override fun onTextChanged(text: String?) {
+                viewModel.setPasswordText(text)
+            }
         }
     }
 
