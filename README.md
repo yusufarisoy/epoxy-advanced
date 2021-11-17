@@ -15,7 +15,13 @@ I used [Rick and Morty API](https://rickandmortyapi.com) in this project.
 - Gson
 - Glide
 
-*I'll upload screen recording of app working*
+## App Preview
+#### Home Screen
 
-## EditText in Epoxy
-There are almost no examples or tutorials about using EditText and creating forms in Epoxy so I wanted to do some stuff.
+<img src="./app_preview/recording_1.gif" alt="gif" height="500"/>
+
+#### Login and Register Screens
+
+<img src="./app_preview/recording_2.gif" alt="gif" height="500"/>
+
+There are almost no examples or tutorials about using EditText and creating forms in Epoxy so I wanted to make a sample app, hope it helps!

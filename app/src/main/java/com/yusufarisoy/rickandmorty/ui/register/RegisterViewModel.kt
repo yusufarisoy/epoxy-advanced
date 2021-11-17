@@ -37,7 +37,8 @@ class RegisterViewModel @Inject constructor() : StatefulViewModel<RegisterState>
     }
 
     fun registerControl() = with (currentUiState) {
-        if (emailText == null || nameText == null || surnameText == null || passwordText == null || passwordRepeatText == null) {
+        if (emailText.isNullOrBlank() || nameText.isNullOrBlank() || surnameText.isNullOrBlank() ||
+            passwordText.isNullOrBlank() || passwordRepeatText.isNullOrBlank()) {
             setError(StateError(exception = null, "Invalid credentials"))
         } else {
             register()

@@ -20,7 +20,7 @@ class LoginViewModel @Inject constructor() : StatefulViewModel<LoginState>(Login
     }
 
     fun loginControl() = with (currentUiState) {
-        if (emailText == null || passwordText == null) {
+        if (emailText.isNullOrBlank() || passwordText.isNullOrBlank()) {
             setError(StateError(exception = null, "Invalid credentials"))
         } else {
             login()

@@ -29,7 +29,7 @@ class ExtendedTextInputEditText(
     }
 
     fun changeInputVisibility(isTextVisible: Boolean) {
-        transformationMethod = if (isTextVisible) {
+        transformationMethod = if (isTextVisible.not()) {
             null
         } else {
             PasswordTransformationMethod.getInstance()
