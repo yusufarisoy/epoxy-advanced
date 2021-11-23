@@ -1,10 +1,10 @@
 # Epoxy Advanced
-Best practices and advanced usages (EditText & Forms) of Epoxy library written in accordance with the Modular and Clean Architectures.
+Best practices and advanced usages (EditText & Forms) of Epoxy library written in accordance to the Modular and Clean Architectures.
 
 I used [Rick and Morty API](https://rickandmortyapi.com) in this project.
 
 ## Technologies
-- Epoxy
+- [Epoxy](https://github.com/airbnb/epoxy)
 - MVVM
 - Coroutines
 - Flow
